@@ -17,6 +17,9 @@ export class GraficaComponent implements OnInit {
     chart: {
       type: 'column'
     },
+    xAxis: {
+      categories: []
+    },
     series: [
       {
         data: [],
@@ -34,9 +37,11 @@ export class GraficaComponent implements OnInit {
         (data) => { // Success
           this.users = data['results'];
           const datosGrafica = this.users.map(x => x.dob.age);
+           const nombre = this.users.map(x  => x.name.first);
 
           //Highcharts
           this.graficaPrueba.series[0]['data'] = datosGrafica;
+          this.graficaPrueba.xAxis['categories'] = nombre;
           Highcharts.chart('MediosdPPrincipal', this.graficaPrueba);
         },
         (err) => {
