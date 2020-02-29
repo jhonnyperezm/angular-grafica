@@ -25,7 +25,17 @@ export class GraficaComponent implements OnInit {
         data: [],
         type: 'column'
       }
-    ]
+    ],
+        lang: {
+        noData: 'https://www.highcharts.com/samples/graphics/sun.png'
+    },
+    noData: {
+        style: {
+            fontWeight: 'bold',
+            fontSize: '15px',
+            color: '#303030'
+        }
+    }
   };
 
   constructor(protected userService: AppService,
@@ -40,8 +50,8 @@ export class GraficaComponent implements OnInit {
            const nombre = this.users.map(x  => x.name.first);
 
           //Highcharts
-          this.graficaPrueba.series[0]['data'] = datosGrafica;
-          this.graficaPrueba.xAxis['categories'] = nombre;
+          // this.graficaPrueba.series[0]['data'] = datosGrafica;
+          // this.graficaPrueba.xAxis['categories'] = nombre;
           Highcharts.chart('MediosdPPrincipal', this.graficaPrueba);
         },
         (err) => {
